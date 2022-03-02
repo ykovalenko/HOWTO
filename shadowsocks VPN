@@ -60,6 +60,8 @@ services:
       - "8388:8388/udp"
     restart: unless-stopped
 
+docker-compose up -d
+
 
 [CLIENT]
 https://github.com/shadowsocks/shadowsocks-windows/releases

@@ -1,0 +1,47 @@
+[SERVER]
+
+apt update && apt upgrade -y && apt install -y shadowsocks-libev
+
+nano /etc/shadowsocks-libev/config.json
+{
+    "server":"34.34.34.34",
+    "server_port":8388,
+    "local_port":1080,
+    "password":"your_password",
+    "timeout":60,
+    "method":"chacha20-ietf-poly1305"
+}
+
+systemctl enable shadowsocks-libev
+systemctl restart shadowsocks-libev
+restart
+
+nano /etc/sysctl.conf
+add to the end of file:
+fs.file-max = 51200
+net.core.rmem_max = 67108864
+net.core.wmem_max = 67108864
+net.core.rmem_default = 65536
+net.core.wmem_default = 65536
+net.core.netdev_max_backlog = 4096
+net.core.somaxconn = 4096
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_fin_timeout = 30
+net.ipv4.tcp_keepalive_time = 1200
+net.ipv4.ip_local_port_range = 10000 65000
+net.ipv4.tcp_max_syn_backlog = 4096
+net.ipv4.tcp_max_tw_buckets = 5000
+net.ipv4.tcp_fastopen = 3
+net.ipv4.tcp_rmem = 4096 87380 67108864
+net.ipv4.tcp_wmem = 4096 65536 67108864
+net.ipv4.tcp_mtu_probing = 1
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+
+sysctl -p
+reboot
+
+
+[CLIENT]
+https://github.com/shadowsocks/shadowsocks-windows/releases

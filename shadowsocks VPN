@@ -43,5 +43,23 @@ sysctl -p
 reboot
 
 
+[DOCKER if need]
+apt install docker docker-compose
+nano docker-compose.yml
+version: '3'
+services:
+  shadowsocks:
+    image: shadowsocks/shadowsocks-libev:latest   
+    environment:
+      - TZ=Europe/London
+      - PASSWORD=your_password
+      - METHOD=chacha20-ietf-poly1305
+      - ARGS=--fast-open
+    ports:
+      - "8388:8388"
+      - "8388:8388/udp"
+    restart: unless-stopped
+
+
 [CLIENT]
 https://github.com/shadowsocks/shadowsocks-windows/releases

@@ -10,3 +10,19 @@ poweroff
 set-vmvideo -vmname ubuntu -horizontalresolution:3840  -verticalresolution:2160 -resolutiontype single
 
 sudo apt install build-essential
+g++ version
+
+sudo apt install git-all
+git --version
+mkdir github
+cd github
+git init 
+git config user.email "you@example.com"
+git config user.name "Your Name"
+# to set your account's default identity.
+# Omit --global to set the identity only in this repository.
+# git config --global user.email "you@example.com"
+# git config --global user.name "Your Name"
+
+# addon
+sodo apt install geany

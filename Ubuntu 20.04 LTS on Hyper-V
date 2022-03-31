@@ -1,0 +1,10 @@
+sudo nano /etc/default/grub
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash video=hyperv_fb:3840x2160"
+
+sudo update-grub
+sudo apt install linux-image-extra-virtual
+
+reboot
+
+"Shutdown the VM and open PowerShell as administrator on host machine and run below"
+set-vmvideo -vmname ubuntu -horizontalresolution:3840  -verticalresolution:2160 -resolutiontype single
